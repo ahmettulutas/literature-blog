@@ -3,7 +3,8 @@ const PostSchema = new mongoose.Schema({
   quote: { type: String, required: true },
   author: { type: String },
   likes: { type: Number },
-  dislikes: { type: Number }
+  dislikes: { type: Number },
+  categories: [String]
 },
   { timestamps: true }
 );
