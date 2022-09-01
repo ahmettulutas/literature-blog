@@ -8,14 +8,14 @@ router.post("/", async (req, res) => {
   try {
     await newPost.save();
     res.status(200).json({
-      status: "Success",
+      status: "Successfully created.",
       data: {
         newPost
       }
     });
   } catch (err) {
     res.status(500).json({
-      status: "Failed",
+      status: "An error occured.",
       message: err
     });
   }
@@ -25,20 +25,19 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   console.log(req.params.id);
   try {
-    const updatedPost = await Post.findByIdAndUpdate(req.params.id, {
+    const data = await Post.findByIdAndUpdate(req.params.id, {
       $set: req.body
     },
       { new: true }
     );
     res.status(200).json({
-      status: "Success",
-      data: {
-        updatedPost
-      }
+      status: "Successfully updated.",
+      data
+
     });
   } catch (err) {
     res.status(500).json({
-      status: "Failed",
+      status: "An error occured.",
       message: err
     })
   }
@@ -49,13 +48,13 @@ router.delete("/", async (req, res) => {
   try {
     await Post.findByIdAndDelete(req.params.id)
     res.status(200).json({
-      status: "Success",
+      status: "Successfully deleted.",
       message: "Deleted"
     });
 
   } catch (err) {
     res.status(500).json({
-      status: "Failed",
+      status: "An error occured.",
       message: err
     })
   }
@@ -71,7 +70,7 @@ router.get("/get-all", async (req, res) => {
     })
   } catch (err) {
     res.status(500).json({
-      status: "Failed",
+      status: "An error occured.",
       message: err
     })
   }
