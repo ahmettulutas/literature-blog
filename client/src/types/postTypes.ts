@@ -1,5 +1,5 @@
 export interface IPostsInitialState {
-    posts?:IPosts | null,
+    posts?:ISinglePost[],
     error:boolean,
     loading:boolean,
 }
@@ -14,16 +14,13 @@ export interface ISinglePost {
   updatedAt?: string,
   __v: number
 }
-export interface IPosts {
-  status:string,
-  data: ISinglePost[] 
-}
+
 export interface ISinglePostResponse {
   status:string,
   data:ISinglePost
 }
 export interface ISinglePostRequest {
-    _id:string,
+    _id?:string,
     quote?:string,
     author?:string,
     likes?:number,

@@ -1,13 +1,13 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import { IPosts, ISinglePostRequest,  ISinglePostResponse } from "../../types/posts";
+import { ISinglePost, ISinglePostRequest,  ISinglePostResponse } from "../../types/postTypes";
 import {server, endpoints} from "../../service/index";
 
 export const getPosts = createAsyncThunk(
   "postSlice/getPosts",
-  async (_, {rejectWithValue}) => {
+  async (_:void, {rejectWithValue}) => {
     try {
-      const response = await server.get<IPosts>(`${endpoints.base}${endpoints.post}/get-all`);
-      return response.data;
+      const response = await server.get(`${endpoints.base}${endpoints.post}/get-all`);
+      return response.data.data as ISinglePost[];
     }
     catch(err) {
       return rejectWithValue(err);
@@ -19,8 +19,8 @@ export const addSinglePost = createAsyncThunk(
   "postSlice/addSinglePost",
   async (arg:ISinglePostRequest, {rejectWithValue}) => {
     try {
-      const response = await server.put<ISinglePostResponse>(`${endpoints.base}${endpoints.post}`, arg);
-      return response.data;
+      const response = await server.post<ISinglePostResponse>(`${endpoints.base}${endpoints.post}`, arg);
+      return response.data.data as ISinglePost;
     }
     catch(err) {
       return rejectWithValue(err);
@@ -31,8 +31,8 @@ export const updateSinglePost = createAsyncThunk(
   "postSlice/updateSinglePost",
   async (arg:ISinglePostRequest, {rejectWithValue}) => {
     try {
-      const response = await server.put<ISinglePostResponse>(`${endpoints.base}${endpoints.post}${arg._id}`, arg);
-      return response.data;
+      const response = await server.put<ISinglePostResponse>(`${endpoints.base}${endpoints.post}/${arg._id}`, arg);
+      return response.data.data as ISinglePost;
     }
     catch(err) {
       return rejectWithValue(err);
@@ -40,10 +40,10 @@ export const updateSinglePost = createAsyncThunk(
   }
 );
 export const deleteSinglePost = createAsyncThunk(
-  "postSlice/updateSinglePost",
+  "postSlice/deleteSinglePost",
   async (arg:ISinglePostRequest, {rejectWithValue}) => {
     try {
-      const response = await server.put<ISinglePostResponse>(`${endpoints.base}${endpoints.post}${arg._id}`, arg);
+      await server.delete(`${endpoints.base}${endpoints.post}/${arg._id}`);
       return arg._id;
     }
     catch(err) {

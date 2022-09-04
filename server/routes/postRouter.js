@@ -4,14 +4,12 @@ const router = require("express").Router();
 
 // creating new post;
 router.post("/", async (req, res) => {
-  const newPost = new Post(req.body);
+  const data = new Post(req.body);
   try {
-    await newPost.save();
+    await data.save();
     res.status(200).json({
       status: "Successfully created.",
-      data: {
-        newPost
-      }
+      data
     });
   } catch (err) {
     res.status(500).json({
@@ -23,7 +21,6 @@ router.post("/", async (req, res) => {
 
 // updating the post;
 router.put("/:id", async (req, res) => {
-  console.log(req.params.id);
   try {
     const data = await Post.findByIdAndUpdate(req.params.id, {
       $set: req.body
@@ -44,7 +41,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete a post 
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     await Post.findByIdAndDelete(req.params.id)
     res.status(200).json({

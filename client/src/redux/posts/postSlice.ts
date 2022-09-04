@@ -1,12 +1,9 @@
 import { createSlice,  PayloadAction ,isRejectedWithValue} from "@reduxjs/toolkit";
-import {  IPostsInitialState } from "../../types/posts";
+import {  IPostsInitialState,  ISinglePostResponse, ISinglePost } from "../../types/postTypes";
 import { addSinglePost, getPosts, updateSinglePost, deleteSinglePost } from "./postReducers";
 
 const initialState : IPostsInitialState = {
-  posts: {
-    status:"",
-    data:[]
-  },
+  posts: [],
   error: false,
   loading: false
 };
@@ -22,44 +19,49 @@ const postSlice = createSlice({
     builder.addCase(getPosts.fulfilled, (state:IPostsInitialState, action: PayloadAction<any>) => {
       state.posts = action.payload;
       state.loading = false;
+      return state;
     })
-    builder.addCase(getPosts.rejected, (state:IPostsInitialState) => {
+    builder.addCase(getPosts.rejected, (state) => {
       state.error = true;
       state.loading = false;
     })
-    builder.addCase(addSinglePost.pending, (state:IPostsInitialState) => {
+     builder.addCase(addSinglePost.pending, (state) => {
       state.loading = true;
     })
-    builder.addCase(addSinglePost.fulfilled, (state:IPostsInitialState, action: PayloadAction<any>) => {
-      state.posts?.data.push(action.payload);
+    builder.addCase(addSinglePost.fulfilled, (state, action:PayloadAction<ISinglePost | never>) => {
+      state.posts?.push(action.payload);
       state.loading = false;
+      return state;
     })
     builder.addCase(addSinglePost.rejected, (state:IPostsInitialState) => {
       state.error = true;
       state.loading = false;
     });
-    builder.addCase(updateSinglePost.pending, (state:IPostsInitialState) => {
+     builder.addCase(updateSinglePost.pending, (state) => {
       state.loading = true;
     })
-    builder.addCase(updateSinglePost.fulfilled, (state:IPostsInitialState, action: PayloadAction<any>) => {
-      state.posts?.data.map(item => item._id === action.payload._id  ? action.payload : item);
+    builder.addCase(updateSinglePost.fulfilled, (state, action: PayloadAction<ISinglePost>) => {
+      const updatedPosts = state.posts?.map(item => item._id === action.payload._id  ? action.payload : item);
+      state.posts = updatedPosts;
       state.loading = false;
+      return state;
     })
-    builder.addCase(updateSinglePost.rejected, (state:IPostsInitialState) => {
+    builder.addCase(updateSinglePost.rejected, (state) => {
       state.error = true;
       state.loading = false;
-    });
-    builder.addCase(deleteSinglePost.pending, (state:IPostsInitialState) => {
+    }); 
+     builder.addCase(deleteSinglePost.pending, (state) => {
       state.loading = true;
     })
-    builder.addCase(deleteSinglePost.fulfilled, (state:IPostsInitialState, action: PayloadAction<any>) => {
-      state.posts?.data.filter(item => item._id === action.payload._id);
+    builder.addCase(deleteSinglePost.fulfilled, (state, action: PayloadAction<any>) => {
+      state.posts = state.posts?.filter(item => item._id !== action.payload);
       state.loading = false;
+      return state;
     })
     builder.addCase(deleteSinglePost.rejected, (state:IPostsInitialState) => {
       state.error = true;
       state.loading = false;
-    });
+    }); 
 
 /*  builder.addMatcher(isRejectedWithValue(getPosts, addSinglePost, updateSinglePost, deleteSinglePost ), (state, action) => {
         state.error = true;
