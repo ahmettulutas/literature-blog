@@ -16,7 +16,7 @@ const postSlice = createSlice({
     builder.addCase(getPosts.pending, (state:IPostsInitialState) => {
       state.loading = true;
     })
-    builder.addCase(getPosts.fulfilled, (state:IPostsInitialState, action: PayloadAction<any>) => {
+    builder.addCase(getPosts.fulfilled, (state:IPostsInitialState, action: PayloadAction<ISinglePost[]>) => {
       state.posts = action.payload;
       state.loading = false;
       return state;

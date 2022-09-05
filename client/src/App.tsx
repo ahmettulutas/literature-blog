@@ -2,7 +2,7 @@ import React from "react";
 import HomePage from "./pages/HomePage";
 import PostsPage from "./pages/PostsPage"
 import { Routes, Route } from "react-router-dom";
-
+import './assets/less/App.less';
 
 function App() {
   return (
