@@ -7,8 +7,12 @@ import PostCard from './PostCard';
 
 
 export const PostList = () => {
-  const posts = useAppSelector((state: IRootState) => state.posts.posts)
+  const posts = useAppSelector((state: IRootState) => state.posts.posts);
+  const isLoading = useAppSelector((state: IRootState) => state.posts.loading)
   return (
-    <Row>{posts?.map((item: ISinglePost) => <Col sm={24} md={8} span={2} className="post-col" key={item._id}><PostCard post={item}/></Col>)}</Row>
+    <>
+      {!isLoading ? <Row>{posts?.map((item: ISinglePost) => <Col sm={24} md={8} span={2} className="post-col" key={item._id}><PostCard post={item} /></Col>)}</Row> : <p>Bekle</p>}
+      
+    </>
   )
-}
+};

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react';
 import { useAppDispatch } from '../redux/useAppDispatch';
 import { addSinglePost } from '../redux/posts/postReducers';
 import { Button, Input, Form, Row, Col } from 'antd';
@@ -7,7 +7,7 @@ import { ISinglePostRequest } from '../types/postTypes';
 const  FormComponent = () => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const handleSubmit = (values:ISinglePostRequest):void => {
+  const handleSubmit = (values: ISinglePostRequest): void => {
    dispatch(addSinglePost(values));
    form.resetFields();
   };
