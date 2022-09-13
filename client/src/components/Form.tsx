@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from '../redux/useAppDispatch';
 import { addSinglePost } from '../redux/posts/postReducers';
-import { Button, Input, Form, Row, Col } from 'antd';
+import { Button, Input, Form } from 'antd';
 import { ISinglePostRequest } from '../types/postTypes';
 
 const  FormComponent = () => {
@@ -16,17 +16,17 @@ const  FormComponent = () => {
     <Form form={form} onFinish={handleSubmit} className="form-container">
         <Form.Item
           name="quote"
-          label="quote"
+          label="Quotation"
           rules= {[{ required:true, message:"You need to type your fav quote!"}]}> 
           <Input type="text"/>
         </Form.Item>
         <Form.Item
           name="author"
-          label="author"
+          label="Author"
           rules= {[{required:true, message:"Please mention the author / owner."}]}> 
           <Input type="text"/>
         </Form.Item>
-        <Button className="ant-btn blue" type="primary" htmlType='submit'>Add</Button>
+        <Button className="ant-btn blue"  htmlType='submit'>Add</Button>
     </Form>
   )
 }

@@ -1,18 +1,18 @@
-import { Col, Row } from 'antd';
 import React from 'react';
+import { Row } from 'antd';
 import { IRootState } from '../redux/store';
 import { useAppSelector } from '../redux/useAppSelector';
 import { ISinglePost } from '../types/postTypes';
 import PostCard from './PostCard';
+import Spinner from './Spinner';
 
 
 export const PostList = () => {
   const posts = useAppSelector((state: IRootState) => state.posts.posts);
-  const isLoading = useAppSelector((state: IRootState) => state.posts.loading)
+  const isLoading = useAppSelector((state: IRootState) => state.posts.loading);
   return (
     <>
-      {!isLoading ? <Row>{posts?.map((item: ISinglePost) => <Col sm={24} md={8} span={2} className="post-col" key={item._id}><PostCard post={item} /></Col>)}</Row> : <p>Bekle</p>}
-      
+      {!isLoading ? <Row>{posts?.map((item: ISinglePost) => <PostCard key={item._id} post={item} />)}</Row> : <Spinner />}
     </>
   )
 };
