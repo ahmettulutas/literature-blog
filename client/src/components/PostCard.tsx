@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import React from 'react'
 import { updateSinglePost, deleteSinglePost } from '../redux/posts/postReducers';
 import { useAppDispatch } from '../redux/useAppDispatch';
@@ -14,11 +15,11 @@ const PostCard: React.FunctionComponent<IPostTypes> = ({post})  => {
   };
     return (
     <>
-      <h1 style={{fontSize:20}}>{post.quote}</h1>
+      <p style={{fontSize:15}}>{post.quote}</p>
       <p>{post.author}</p>
-      <button onClick={() => handleLike("likes")}>{post.likes}</button>
-      <button onClick={() => handleLike("dislikes")}>{post.dislikes}</button>
-      <button onClick={() => dispatch(deleteSinglePost({_id:post._id}))}>DELETE!!!</button>
+      <Button onClick={() => handleLike("likes")}>{post.likes}</Button>
+      <Button onClick={() => handleLike("dislikes")}>{post.dislikes}</Button>
+      {/* <button onClick={() => dispatch(deleteSinglePost({_id:post._id}))}>DELETE!!!</button> */}
     </>
     )
 }
