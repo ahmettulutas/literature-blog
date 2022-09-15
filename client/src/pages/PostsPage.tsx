@@ -10,8 +10,8 @@ export default function PostsPage() {
   
   const dispatch = useAppDispatch();
   useEffect(() => {
-        dispatch(getPosts())
-  },[dispatch]);
+    dispatch(getPosts());
+  }, [dispatch]);
   
   return (
     <Row className="post-page">

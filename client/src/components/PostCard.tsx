@@ -1,3 +1,4 @@
+import { DislikeOutlined, LikeOutlined } from '@ant-design/icons';
 import { Button, Col, Row } from 'antd';
 import React from 'react'
 import { updateSinglePost } from '../redux/posts/postReducers';
@@ -18,8 +19,8 @@ const PostCard: React.FunctionComponent<IPostTypes> = ({post})  => {
       <p>{post.quote}</p>
       <p>{post.author ? `- ${post.author}` : "- Anonymous"}</p>
       <Row>
-        <Button onClick={() => handleLike("likes")}>{post.likes}</Button>
-        <Button onClick={() => handleLike("dislikes")}>{post.dislikes}</Button>
+        <Button icon={<LikeOutlined />} onClick={() => handleLike("likes")}>{post.likes}</Button>
+        <Button icon={<DislikeOutlined />} onClick={() => handleLike("dislikes")}>{post.dislikes}</Button>
           {/* <button onClick={() => dispatch(deleteSinglePost({_id:post._id}))}>DELETE!!!</button> */}
       </Row>
     </Col>

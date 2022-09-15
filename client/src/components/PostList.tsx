@@ -12,7 +12,7 @@ export const PostList = () => {
   const isLoading = useAppSelector((state: IRootState) => state.posts.loading);
   return (
     <>
-      {!isLoading ? <Row>{posts?.map((item: ISinglePost) => <PostCard key={item._id} post={item} />)}</Row> : <Spinner />}
+      {!isLoading ? <Row className="post-list-container">{posts?.map((item: ISinglePost) => <PostCard key={item._id} post={item} />)}</Row> : <Spinner />}
     </>
   )
 };

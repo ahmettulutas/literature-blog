@@ -1,9 +1,12 @@
-import { Row } from 'antd'
-import React from 'react'
+import React from 'react';
+import { Row } from 'antd';
 
-const Header = () =>  {
+const Header = () => {
   return (
-    <div className='header-main'>Literature Blog</div>
+    <Row className='header-main'> 
+      Literature Blog
+
+    </Row>
   )
 }
 export default Header;
