@@ -16,7 +16,7 @@ const PostCard: React.FunctionComponent<IPostTypes> = ({post})  => {
   };
     return (
     <Col className="post-card">
-      <p>{post.quote}</p>
+      <blockquote>{post.quote}</blockquote>
       <p>{post.author ? `- ${post.author}` : "- Anonymous"}</p>
       <Row>
         <Button icon={<LikeOutlined />} onClick={() => handleLike("likes")}>{post.likes}</Button>

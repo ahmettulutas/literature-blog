@@ -1,17 +1,54 @@
 
+
 .post-card {
   margin:10px;
-  box-shadow: 0 0.2em 1em rgba(44, 39, 36, 0.2);
+  box-shadow: 0 0.2em 1em @box-shadow-gray;
   background-color: white;
-  padding:10px 20px;
+  padding:10px 30px;
   align-self: baseline;
   font-size:16px;
-  flex:1 1 0;
+  flex:1 1 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family:"Kalam";
-  min-width:250px;
+  font-family: 'Special Elite', cursive;
+  letter-spacing: 2px;
+
+  blockquote {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0 0.5rem;
+    position:relative;
 }
+  blockquote:before {
+	content: '“';
+    left: -1.5rem;
+    top: -1rem;
+  }
+
+  blockquote:after {
+	content: '”';
+    right: -1rem;
+    bottom: 0;
+  }
+  blockquote:before,
+  blockquote:after {
+    position: absolute;
+    color: @light-yellow;
+    font-size: 4rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  p {
+    font-style: italic;
+    display:block;
+    text-align:right;
+    margin:10px 0 0 0;
+    height:auto;
+    font-size:0.8rem;
+  }
+}
+ 
 
 
