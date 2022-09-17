@@ -5,9 +5,11 @@ export interface IPostsInitialState {
 }
 export interface ISinglePost {
   quote: string,
-  author: string
-  likes?: number,
-  dislikes?: number,
+  author: string,
+  likes: [string],
+  dislikes:[string],
+/*   likesCount: number,
+  dislikesCount: number, */
   categories?: [string]
   _id?: string,
   createdAt?: string,
@@ -20,9 +22,9 @@ export interface ISinglePostResponse {
   data:ISinglePost
 }
 export interface ISinglePostRequest {
-    _id?:string,
-    quote?:string,
-    author?:string,
-    likes?:number,
-    dislikes?:number
+  _id?:string,
+  data?: {
+    likes?:[string],
+    dislikes?:[string] 
+  },
 }

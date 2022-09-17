@@ -31,7 +31,7 @@ export const updateSinglePost = createAsyncThunk(
   "postSlice/updateSinglePost",
   async (arg:ISinglePostRequest, {rejectWithValue}) => {
     try {
-      const response = await server.put<ISinglePostResponse>(`${endpoints.base}${endpoints.post}/${arg._id}`, arg);
+      const response = await server.put<ISinglePostResponse>(`${endpoints.base}${endpoints.post}/${arg._id}`, arg.data);
       return response.data.data as ISinglePost;
     }
     catch(err) {

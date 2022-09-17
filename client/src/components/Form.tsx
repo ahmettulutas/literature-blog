@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import { useAppDispatch } from '../redux/useAppDispatch';
 import { addSinglePost } from '../redux/posts/postReducers';
-import { Button, Input, Drawer, Form, Row, Col, Select } from 'antd';
+import { Button, Input, Drawer, Form, Select, Col } from 'antd';
 import { ISinglePostRequest } from '../types/postTypes';
-import svgs from '../assets/images/svgs';
-import Icon, { EditFilled } from '@ant-design/icons';
+import  { EditFilled } from '@ant-design/icons';
 import TextArea from 'antd/lib/input/TextArea';
-const data = [{ label: 1, value: 1 }, { label: 2, value: 2 }, {label:3, value:3}];
+
+const data = [{ label: 1, value: 1 }, { label: 2, value: 2 }, { label: 3, value: 3 }];
+
 const FormComponent = () => {
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
@@ -18,7 +19,10 @@ const FormComponent = () => {
 
   return (
     <>
-      <Button icon={<EditFilled />} onClick={() => setOpen(true)} />
+      <Col>
+        Click here to Type
+        <Button icon={<EditFilled />} onClick={() => setOpen(true)} />
+      </Col>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Form layout="vertical" form={form} onFinish={handleSubmit} className="form-container">
           <Form.Item
@@ -36,8 +40,11 @@ const FormComponent = () => {
           <Form.Item
             name="categories"
             label="The writer / owner of the quotation"
-            rules={[{ required: true, message: "Please mention the author / owner." }]}>
-            <Select placeholder="mention the author" options={data} />
+            rules={[{ required: true, message: "Select Categories." }]}>
+            <Select
+              mode="multiple"
+              showArrow
+              placeholder="Select categories" options={data} />
           </Form.Item>
           <Button className="ant-btn blue" htmlType='submit'>SEND</Button>
         </Form>
