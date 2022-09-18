@@ -1,18 +1,22 @@
-
+.post-list-container {
+  height: fit-content;
+  padding:30px;
+}
 
 .post-card {
   margin:10px;
   box-shadow: 0 0.2em 1em @box-shadow-gray;
   background-color: white;
-  padding:10px 30px;
+  padding:20px 40px;
   align-self: baseline;
   font-size:16px;
-  flex:1 1 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   font-family: 'Special Elite', cursive;
   letter-spacing: 2px;
+  max-width:80%;
+  margin:1rem auto;
+  max-height:300px;
 
   blockquote {
     font-size: 1rem;
@@ -20,7 +24,7 @@
     margin: 0;
     padding: 0 0.5rem;
     position:relative;
-}
+  }
   blockquote:before {
 	content: '“';
     left: -1.5rem;

@@ -1,15 +1,14 @@
 export interface IPostsInitialState {
     posts?:ISinglePost[],
     error:boolean,
-    loading:boolean,
+    loading: boolean,
+    token:string
 }
 export interface ISinglePost {
   quote: string,
   author: string,
   likes: [string],
   dislikes:[string],
-/*   likesCount: number,
-  dislikesCount: number, */
   categories?: [string]
   _id?: string,
   createdAt?: string,

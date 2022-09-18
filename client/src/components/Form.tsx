@@ -8,7 +8,7 @@ import TextArea from 'antd/lib/input/TextArea';
 
 const data = [{ label: 1, value: 1 }, { label: 2, value: 2 }, { label: 3, value: 3 }];
 
-const FormComponent = () => {
+const FormComponent: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
@@ -19,9 +19,8 @@ const FormComponent = () => {
 
   return (
     <>
-      <Col>
-        Click here to Type
-        <Button icon={<EditFilled />} onClick={() => setOpen(true)} />
+      <Col> 
+      <Button icon={<EditFilled />} onClick={() => setOpen(true)}>Click to quothe</Button>
       </Col>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Form layout="vertical" form={form} onFinish={handleSubmit} className="form-container">

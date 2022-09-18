@@ -1,16 +1,16 @@
+import React from 'react'
 import { DislikeOutlined, LikeOutlined } from '@ant-design/icons';
 import { Button, Col, Row } from 'antd';
-import React from 'react'
 import { updateSinglePost, deleteSinglePost } from '../redux/posts/postReducers';
 import { useAppDispatch } from '../redux/useAppDispatch';
-import { ISinglePost, ISinglePostRequest } from '../types/postTypes';
+import { ISinglePost } from '../types/postTypes';
 
 const userId = "123456";
 interface IPostTypes {
   post:ISinglePost
 }
 
-const PostCard: React.FunctionComponent<IPostTypes> = ({post})  => {
+const PostCard: React.FC<IPostTypes> = ({post})  => {
   const dispatch = useAppDispatch();
   const handleLike = (type: string) => {
     dispatch(updateSinglePost({_id:post._id, data:{[type]: userId} }))

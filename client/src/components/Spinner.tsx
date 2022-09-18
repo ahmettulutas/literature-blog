@@ -1,7 +1,18 @@
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 import React from 'react'
 
-export default function Spinner() {
+const Spinner: React.FC  = () =>  {
   return (
-    <div>Spinner</div>
+    <Spin
+      className="spinner"
+      indicator={
+        <LoadingOutlined
+          style={{
+          fontSize: 24,
+          }}
+          spin/>}>
+    </Spin>
   )
 }
+export default Spinner;

@@ -5,7 +5,8 @@ import { addSinglePost, getPosts, updateSinglePost, deleteSinglePost } from "./p
 const initialState : IPostsInitialState = {
   posts: [],
   error: false,
-  loading: false
+  loading: false,
+  token: window.localStorage.getItem("token") ? JSON.stringify(window.localStorage.getItem("token")) : ""
 };
 
 const postSlice = createSlice({
