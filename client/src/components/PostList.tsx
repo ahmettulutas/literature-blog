@@ -12,13 +12,14 @@ const PostList: React.FC = () => {
   const isLoading = useAppSelector((state: IRootState) => state.posts.loading);
   return (
     <>
-      {isLoading ?
+      {!isLoading ?
         <Row className="post-list-container">
           {posts?.map((item: ISinglePost) =>
             <Col xs={24} key={item._id}>
               <PostCard post={item} />
             </Col>)}</Row>
-        : <Spinner />
+        :
+        <Spinner />
       } 
     </>
   )

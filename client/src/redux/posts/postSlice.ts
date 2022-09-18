@@ -34,7 +34,7 @@ const postSlice = createSlice({
       return state;
     });
 
-    builder.addCase(deleteSinglePost.fulfilled, (state, action: PayloadAction<any>) => {
+    builder.addCase(deleteSinglePost.fulfilled, (state, action: PayloadAction<string>) => {
       state.posts = state.posts?.filter(item => item._id !== action.payload);
       state.loading = false;
       return state;

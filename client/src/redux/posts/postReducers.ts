@@ -44,7 +44,7 @@ export const deleteSinglePost = createAsyncThunk(
   async (arg:ISinglePostRequest, {rejectWithValue}) => {
     try {
       await server.delete(`${endpoints.base}${endpoints.post}/${arg._id}`);
-      return arg._id;
+      return arg._id as string;
     }
     catch(err) {
       return rejectWithValue(err);
