@@ -22,7 +22,7 @@ const PostCard: React.FunctionComponent<IPostTypes> = ({post})  => {
       <Row>
           <Button icon={<LikeOutlined />} /* disabled={post.likes.includes(userId)} */ onClick={() => handleLike("likes")}>{post.likes.length}</Button>
           <Button icon={<DislikeOutlined />} /* disabled={post.dislikes.includes(userId)} */ onClick={() => handleLike("dislikes")}>{post.dislikes.length}</Button>
-          <button onClick={() => dispatch(deleteSinglePost({_id:post._id}))}>DELETE!!!</button>
+          <Button onClick={() => dispatch(deleteSinglePost({_id:post._id}))}>DELETE!!!</Button>
       </Row>
     </Col>
     )

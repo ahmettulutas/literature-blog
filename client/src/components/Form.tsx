@@ -40,7 +40,7 @@ const FormComponent = () => {
           <Form.Item
             name="categories"
             label="The writer / owner of the quotation"
-            rules={[{ required: true, message: "Select Categories." }]}>
+            rules={[{ required: false, message: "Select Categories." }]}>
             <Select
               mode="multiple"
               showArrow
