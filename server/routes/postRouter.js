@@ -33,12 +33,14 @@ router.put("/:id", async (req, res) => {
       },
       {new:true}
       )
+    }
+    else {
+      data = await Post.findByIdAndUpdate(req.params.id, {
+        $push: {[key]: req.body[key]}
+      },
+      {new:true}
+      );
     };
-    data = await Post.findByIdAndUpdate(req.params.id, {
-    $push: {[key]: req.body[key]}
-    },
-    {new:true}
-    );
     res.status(200).json({
       status: "Successfully updated.",
       data
